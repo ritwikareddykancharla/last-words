@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Keep the skeleton a skeleton",
+      "trigger": "PostToolUse",
+      "description": "After the agent edits a file, checks that shared code stays app-agnostic, apps don't import each other, and consent and validation rules hold.",
+      "matcher": "fs_write|str_replace|fs_append",
+      "action": {
+        "type": "agent",
+        "prompt": "If you just changed a file under skeleton/: it must not import from ghost-words/ or echo-archive/, must not contain app-specific styling, and every pure function must stay covered by properties in skeleton/src/skeleton.test.ts. If you changed LanguagePack, bump PACK_FORMAT and keep the export/import round-trip property passing. If you changed an app: it may import only from skeleton/src and its own folder. In echo-archive, a recording must never be saved without the consent checkbox, and export must still warn about \"community only\" recordings."
+      }
+    }
+  ]
+}

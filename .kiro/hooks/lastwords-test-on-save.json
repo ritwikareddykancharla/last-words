@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run skeleton tests on save",
+      "trigger": "PostFileSave",
+      "description": "Runs the Last Words property-based tests once whenever a TypeScript file is saved.",
+      "matcher": "(skeleton|ghost-words|echo-archive)/.*\\.(ts|tsx)$",
+      "action": {
+        "type": "command",
+        "command": "npx vitest run --reporter=dot",
+        "timeout": 120
+      }
+    }
+  ]
+}

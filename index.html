@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Last Words: a skeleton for endangered-language apps, with two apps built on it." />
+    <meta name="theme-color" content="#0a0f1a" />
+    <title>Last Words · a skeleton for endangered-language apps</title>
+    <style>
+      body { margin: 0; font: 17px/1.55 'Iowan Old Style', Georgia, serif; color: #e9e6dc; background: #0a0f1a; }
+      main { max-width: 860px; margin: 0 auto; padding: 48px 22px; }
+      h1 { margin: 0; font-size: clamp(44px, 8vw, 72px); line-height: 1; color: #f3efd9; text-shadow: 0 0 30px rgba(243,239,217,.3); }
+      .lede { font-style: italic; color: #b9c0d0; font-size: 20px; }
+      .apps { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 30px 0; }
+      .app { display: block; padding: 22px; border-radius: 14px; text-decoration: none; color: inherit; border: 1px solid #2c3854; }
+      .app:hover, .app:focus-visible { border-color: #ffbf5e; outline: none; }
+      .gw { background: linear-gradient(#1a2338, #111a2c); }
+      .ea { background: #efe4cc; color: #2b2118; border-color: #cdb995; }
+      .app h2 { margin: 0 0 6px; font-size: 26px; }
+      .app p { margin: 0; }
+      pre { padding: 16px; overflow: auto; font: 13px/1.5 Menlo, monospace; background: #121a2b; border-radius: 10px; color: #c7d4ee; }
+      a { color: #bfe6ff; }
+      @media (max-width: 640px) { .apps { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Last Words</h1>
+      <p class="lede">About 40% of the world's languages are endangered. When the last speakers go, their words go with them. Last Words is a small skeleton for building apps that keep those words alive, in the voices of the people who speak them.</p>
+      <div class="apps">
+        <a class="app gw" href="./ghost-words/">
+          <h2>🪦 Ghost Words</h2>
+          <p>Learn real recorded words from Breton, Irish, Welsh and Basque, straight from Wikidata. Every word you learn rises from its grave.</p>
+        </a>
+        <a class="app ea" href="./echo-archive/">
+          <h2>📼 Echo Archive</h2>
+          <p>Record your own language, word by word, with the speaker's consent and a license they choose. Share it as one file, or practice it in Ghost Words.</p>
+        </a>
+      </div>
+      <h2>One skeleton, two apps</h2>
+      <pre>skeleton/src/
+  pack.ts      the language pack format + validation of untrusted files
+  lexemes.ts   packs from Wikidata lexemes with recordings
+  srs.ts       Leitner spaced repetition
+  quiz.ts      multiple-choice questions with distinct answers
+  audio.ts     playback (incl. Commons MP3 fallback), recording, waveforms
+  store.ts     IndexedDB for packs, recordings and progress
+  ui.tsx       PlayButton, Waveform
+ghost-words/   app 1: learner      (uses lexemes, srs, quiz, audio, store, ui)
+echo-archive/  app 2: archivist    (uses pack, audio, store, ui)</pre>
+      <p>Both apps share one pack format and one on-device store, so a word recorded in Echo Archive can be practiced in Ghost Words a second later. <a href="https://github.com/ritwikareddykancharla/last-words">Source on GitHub</a>.</p>
+    </main>
+  </body>
+</html>
